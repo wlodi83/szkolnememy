@@ -1,0 +1,3 @@
+<% Category.all.each do |category| %>
+  <li><%= link_to category.name, memes_url(:category_id => category.id) %></li>
+<% end %>

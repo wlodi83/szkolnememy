@@ -1,0 +1,13 @@
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <fieldset>
+    <%= f.email_field :email, :required => true, :autofocus => true, :placeholder => "Email" %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.submit "Resend confirmation instructions" %><br /><br />
+    <%= link_to "Zapomniałeś/aś hasło?", new_user_password_path %><br />
+    <%= link_to "Nie otrzymałeś/aś instrukcji potwierdzenia rejestracji?", new_user_unlock_path %>
+  </fieldset>
+<% end %>

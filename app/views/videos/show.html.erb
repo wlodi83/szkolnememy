@@ -1,0 +1,18 @@
+<% content_for :head do %>
+  <meta property="og:title" content="<%= @video.title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <meta property="og:image" content="<%= "http://img.youtube.com/vi/#{@video.youtube_id}/0.jpg" %>" />
+  <meta property="og:site_name" content="Szkolne Memy - Video" />
+<% end %>
+<center>
+<div class="pin">
+  <iframe width="640" height="360" src="http://www.youtube.com/embed/<%= @video.youtube_id %>" frameborder="0" allowfullscreen></iframe> 
+  <p class ="muted pull-right"><small>Dodano <%= distance_of_time_in_words_to_now(@video.updated_at, include_seconds = true) %> temu</small></p>
+</div>
+</center>
+<center>
+  <div class="fb-comments" data-href="<%= "http://www.szkolnememy.pl/videos/#{@video.friendly_id}" %>" data-width="width:100% !important;" data-num-posts="2">
+  </div>
+</center>
+

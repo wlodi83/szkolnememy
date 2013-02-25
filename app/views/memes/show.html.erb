@@ -1,0 +1,18 @@
+<% content_for :head do %>
+  <meta property="og:title" content="<%= @meme.title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <meta property="og:image" content="<%= @meme.image.url(:medium) %>" />
+  <meta property="og:site_name" content="Szkolne Memy" />
+<% end %>
+<center>
+<div class="pin">
+  <%= image_tag @meme.image.url(:preview) %>
+  <p class ="muted pull-right"><small>Dodano <%= distance_of_time_in_words_to_now(@meme.updated_at, include_seconds = true) %> temu</small></p>
+</div>
+</center>
+<center>
+  <div class="fb-comments" data-href="<%= "http://www.szkolnememy.pl/memes/#{@meme.friendly_id}" %>" data-width="width:100% !important;" data-num-posts="2">
+  </div>
+</center>
+

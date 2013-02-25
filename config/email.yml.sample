@@ -1,0 +1,12 @@
+defaults: &defaults
+  login:
+  password:
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

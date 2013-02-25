@@ -1,0 +1,12 @@
+<div id="columns">
+  <% @memes.each do |meme| %>
+    <div class="pin">
+      <%= link_to image_tag(meme.image.url(:medium)), meme_path(meme) %>
+      <p><strong><%= meme.title %></strong></p>
+      <p><%= meme.description %></p><br />
+      <p class ="muted pull-right">
+        <small>Dodano <%= distance_of_time_in_words_to_now(meme.updated_at, include_seconds = true) %> temu</small>
+      </p>
+    </div>
+  <% end %>
+</div>

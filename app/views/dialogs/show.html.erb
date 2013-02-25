@@ -1,0 +1,28 @@
+<%- model_class = Dialog -%>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:message) %>:</strong></dt>
+  <dd><%= @dialog.message %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link) %>:</strong></dt>
+  <dd><%= @dialog.link %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @dialog.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:caption) %>:</strong></dt>
+  <dd><%= @dialog.caption %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @dialog.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:picture) %>:</strong></dt>
+  <dd><%= image_tag @dialog.picture.url(:thumb)%></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              dialogs_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_dialog_path(@dialog), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              dialog_path(@dialog),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

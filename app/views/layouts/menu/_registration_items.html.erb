@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <li><%= link_to('Edytuj konto', edit_user_registration_path) %></li>
+<% elsif !admin_signed_in? %>
+  <li><%= link_to('Rejestracja', new_user_registration_path) %></li>
+<% end %>

@@ -1,0 +1,12 @@
+<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+  <fieldset>
+    <%= f.email_field :email, :required => true, :autofocus => true, :placeholder => "Email" %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.submit "Resend unlock instructions" %><br /><br />
+    <%= link_to "Forgot your password?", new_user_password_path %><br />
+    <%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path %><br /> 
+  </fieldset>
+<% end %>

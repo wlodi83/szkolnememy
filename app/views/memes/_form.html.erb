@@ -1,0 +1,43 @@
+<%= form_for @meme, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render 'layouts/errors', object: @meme %>
+  <div class="control-group">
+    <%= f.label :title, "Nagłówek Mema", :class => 'control-label'%>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field', :required => true, :autofocus => true, :placeholder => "max. 50 znaków" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, "Opis Mema", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_area', :rows => 5, :required => true, :autofocus => true, :placeholder => "max. 100 znaków" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :category, "Wybierz Kategorię", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :category_id, Category.all.collect {|x| [x.name, x.id]} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :upload_image, "Wybierz Zdjęcie", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :image %>
+    </div>
+  </div>
+  <% if admin_signed_in? %>
+  <div class="control-group">
+    <%= f.label :published, "Publikuj", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :published %>
+    </div>
+  </div>
+  <% end -%>
+  
+  <div class="form-actions">
+    <% if user_signed_in? %>
+    <%= recaptcha_tags %> <br />
+    <% end %>
+    <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+    <%= link_to "Anuluj", memes_path, :class => 'btn' %>
+  </div> 
+<% end %>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+ <head>
+    <% if content_for?(:head) %>
+      <%= yield :head %>
+    <% else %>
+      <meta property="og:title" content="Szkolne Memy" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="<%= request.url %>" />
+      <meta property="og:site_name" content="Szkolne Memy - Humor Szkolny, Szkoła" />   
+    <% end %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Szkolne Memy" %></title>
+    <%= raw google_analytics_js %>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>   
+ </head>
+  <body>
+    <%= raw facebook_sdk %>
+    <div class="navbar navbar-fluid-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <%= link_to "Szkolne Memy", root_url, :class => "brand" %>
+          <div class="container-fluid nav-collapse">
+            <ul class="nav">
+              <% if current_user %>
+                <li><%= link_to "Dodaj Mema", new_meme_path %></li>
+                <li><%= link_to "Dodaj Video", new_video_path %></li>
+              <% elsif current_admin %>
+                <li><%= link_to "Dodaj Mema", new_meme_path %></li>
+                <li><%= link_to "Dodaj Video", new_video_path %></li>
+                <li><%= link_to "Dodaj Kategorię", new_category_path %></li>
+                <li><%= link_to "Memy", admin_memes_path %></li>
+                <li><%= link_to "Videos", admin_videos_path %></li>
+                <li><%= link_to "Kategorie", categories_path %></li>
+                <li><%= link_to "Poczekalnia", publish_memes_path %></li>
+                <li><%= link_to "Użytkownicy", users_path %></li>
+                <li><%= link_to "Promo", dialogs_path %></li>
+              <% end -%>
+                <%= render 'layouts/menu/login_items' %>
+                <%= render 'layouts/menu/registration_items' %>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Kategorie</li>
+              <%= render 'layouts/category_items' %>
+            </ul>
+          </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Social Media</li>
+              <div class="facebook">
+                <%= raw facebook_iframe %>
+              </div>
+              <br />
+              <div class="twittertimeline">
+                <%= raw twitter_timeline %>
+              </div>
+            </ul>
+          </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Kontakt</li>
+              <%= mail_to "szkolnememy@gmail.com", "Napisz do nas", :encode => "javascript" %>
+            </ul>
+          </div><!--/.well --> 
+        </div><!--/span-->
+        <div class="span9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; SzkolneMemy.pl 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+  </body>
+</html>

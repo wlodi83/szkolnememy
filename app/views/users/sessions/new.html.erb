@@ -1,0 +1,19 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <fieldset>
+    <%= link_to image_tag('fb_login.png'), user_omniauth_authorize_path(:facebook) %><br />
+  </fieldset>
+  <br />
+  <p>or</p>
+  <br />
+  <fieldset>
+    <%= f.email_field :email, :required => true, :autofocus => true, :placeholder => "Email" %><br />
+    <%= f.password_field :password, :placeholder => "Password", :required => true %>
+  </fieldset>
+  <fieldset>
+    <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me %>
+    <% end %><br /><br />
+    <%= f.submit "Login" %><br /><br />
+    <%= link_to "Forgot your password?", new_user_password_path %>
+  </fieldset>
+<% end %>

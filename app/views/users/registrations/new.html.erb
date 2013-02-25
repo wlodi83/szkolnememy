@@ -1,0 +1,16 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <fieldset>
+    <%= f.text_field :name, :required => true, :autofocus => true, :placeholder => "Imię" %><br />
+    <%= f.email_field :email, :required => true, :autofocus => true, :placeholder => "Email" %><br />
+    <%= f.password_field :password, :placeholder => "Hasło", :required => true %><br />
+    <%= f.password_field :password_confirmation, :placeholder => "Potwierdź Hasło", :required => true %>
+  </fieldset>
+
+  <fieldset>
+  <%= f.submit "Signup" %><br /><br />
+  <%= link_to "Forgot your password?", new_user_password_path %><br />
+  <%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path %><br />
+  <%= link_to "Didn't receive unlock instructions?", new_user_unlock_path %>
+  </fieldset>
+<% end %>

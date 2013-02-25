@@ -1,0 +1,35 @@
+<%- model_class = Video -%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:link) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><iframe width="100" height="56" src="http://www.youtube.com/embed/<%= video.youtube_id %>" frameborder="0" allowfullscreen></iframe></td>
+        <td><%= link_to video.title, video_path(video) %></td>
+        <td><%= video.description %></td>
+        <td><%=l video.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_video_path(video), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      video_path(video),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Napewno usunąć?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_video_path,
+            :class => 'btn btn-primary' %>

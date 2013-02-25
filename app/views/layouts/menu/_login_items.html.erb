@@ -1,0 +1,9 @@
+<% if admin_signed_in? %>
+  <li><%= link_to('Wyloguj się', destroy_admin_session_path, :method => :delete) %></li>
+<% elsif user_signed_in? %>
+  <li><%= link_to('Wyloguj się', destroy_user_session_path, :method => :delete) %></li>
+<% else %>
+  <li><%= link_to "Zaloguj się przez Facebook", user_omniauth_authorize_path(:facebook) %></li>
+  <li><%= link_to "Zaloguj się przez Twitter", user_omniauth_authorize_path(:twitter)%></li>
+  <li><%= link_to('Zaloguj się', new_user_session_path)  %></li>
+<% end %>

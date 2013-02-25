@@ -1,0 +1,12 @@
+<div id="columns">
+  <% @videos.each do |video| %>
+    <div class="pin">
+      <iframe width="300" height="169" src="http://www.youtube.com/embed/<%= video.youtube_id %>" frameborder="0" allowfullscreen></iframe>
+      <p><strong><%= video.title %></strong></p>
+      <p><%= video.description %></p><br />
+      <p class ="muted pull-right">
+        <small>Dodano <%= distance_of_time_in_words_to_now(video.updated_at, include_seconds = true) %> temu</small>
+      </p>
+    </div>
+  <% end %>
+</div>
