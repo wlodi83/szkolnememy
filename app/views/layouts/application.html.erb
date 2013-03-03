@@ -57,20 +57,14 @@
             <ul class="nav">
               <% if current_user %>
                 <li><%= link_to "Dodaj Mema", new_meme_path %></li>
-                <li><%= link_to "Dodaj Video", new_video_path %></li>
+                <li><%= link_to "Dodaj Film z YouTube", new_video_path %></li>
               <% elsif current_admin %>
                 <li><%= link_to "Dodaj Mema", new_meme_path %></li>
-                <li><%= link_to "Dodaj Video", new_video_path %></li>
+                <li><%= link_to "Dodaj Film z YouTube", new_video_path %></li>
                 <li><%= link_to "Dodaj Kategorię", new_category_path %></li>
-                <li><%= link_to "Memy", admin_memes_path %></li>
-                <li><%= link_to "Videos", admin_videos_path %></li>
-                <li><%= link_to "Kategorie", categories_path %></li>
-                <li><%= link_to "Poczekalnia", publish_memes_path %></li>
-                <li><%= link_to "Użytkownicy", users_path %></li>
-                <li><%= link_to "Promo", dialogs_path %></li>
               <% end -%>
-                <%= render 'layouts/menu/login_items' %>
-                <%= render 'layouts/menu/registration_items' %>
+              <%= render 'layouts/menu/login_items' %>
+              <%= render 'layouts/menu/registration_items' %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -80,6 +74,27 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
+          <% if current_admin %>
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Administracja<li>
+              <li><%= link_to "Memy", admin_memes_path %></li>
+              <li><%= link_to "Filmy", admin_videos_path %></li>
+              <li><%= link_to "Kategorie", categories_path %></li>
+              <li><%= link_to "Poczekalnia", publish_memes_path %></li>
+              <li><%= link_to "Użytkownicy", users_path %></li>
+              <li><%= link_to "Promo", dialogs_path %></li>
+            </ul>
+          </div>
+          <% end %>
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Menu</li>
+              <li><%= link_to "Memy", memes_path %></li>
+              <li><%= link_to "Filmy", videos_path %></li>
+              <li><%= link_to "Suchary" %></li>
+            </ul>
+          </div>
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Kategorie</li>
